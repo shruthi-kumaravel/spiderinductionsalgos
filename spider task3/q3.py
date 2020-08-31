@@ -1,14 +1,25 @@
-def isprime(n): 
-     
-    for i in range(2, n): 
-        if n % i == 0: 
-            return False
-  
-    return True
 n = int(input())
-sum = 0
-count = 0
-for i in range(2,n+1):
-  if isprime(i) == True:
-    count = count + 1
-print(count*(count+1)//2)
+m = int(input())
+strength=[]
+answer = 0
+for i in range(0,m):
+  strength.append(int(input()))
+strength.sort()
+#if n one answer is sum f all bricks
+if n == 1:
+  for i in strength :
+    answer= answer + i
+if n == 2 :
+  while len(strength)>2:
+    #combine smollest two 
+    temp = (strength[0]+strength[1])
+    #seperate the rest
+    strength = strength[2:]
+    for i in strength:
+      if temp <= i:
+        #to make sure order is maintained 
+        strength.insert(strength.index(i),temp)
+        break
+answer = strength[0]
+
+print(answer)
